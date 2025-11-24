@@ -15,6 +15,7 @@ namespace GestorProductosWPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// Ventana principal del sistema SorTech - Gestión de productos electrónicos
+    /// Versión mejorada con paleta de colores pastel y diseño responsive
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -38,10 +39,6 @@ namespace GestorProductosWPF
         // MÉTODOS DE INICIALIZACIÓN
         // ═══════════════════════════════════════════════════════════════════
 
-        /// <summary>
-        /// Inicializa los controles de la interfaz con valores predeterminados
-        /// Principio de usabilidad: Valores por defecto que facilitan el uso
-        /// </summary>
         private void InicializarComponentes()
         {
             // Configurar ComboBox de tipo de búsqueda
@@ -60,15 +57,10 @@ namespace GestorProductosWPF
             txtIteracionesValor.Text = "0";
         }
 
-        /// <summary>
-        /// Carga el conjunto de datos inicial en el sistema
-        /// Ley de Jakob: Los usuarios esperan que el sistema tenga datos de ejemplo
-        /// </summary>
         private void CargarDatosIniciales()
         {
             try
             {
-                // Productos de electrónica para demostración
                 var productosIniciales = new[]
                 {
                     new Producto { Id = 3, CodigoBarras = "3", Nombre = "Teclado", Categoria = "Electrónica", Precio = 1200, Stock = 20 },
@@ -93,37 +85,26 @@ namespace GestorProductosWPF
             }
         }
 
-        /// <summary>
-        /// Actualiza todos los elementos de la interfaz con los datos actuales
-        /// Principio de usabilidad: Visibilidad del estado del sistema
-        /// </summary>
         private void ActualizarInterfaz()
         {
-            // Actualizar DataGrid de inventario
             dataGridProductos.ItemsSource = null;
             dataGridProductos.ItemsSource = gestor.ObtenerListaProductos();
 
-            // Actualizar información del footer
             var productos = gestor.ObtenerListaProductos();
             txtInfoInventario.Text = $"Total de productos: {productos.Count} | " +
                                     $"Valor total del inventario: {productos.Sum(p => p.Precio * p.Stock):C}";
         }
 
         // ═══════════════════════════════════════════════════════════════════
-        // MANEJADORES DE EVENTOS - GESTIÓN DE PRODUCTOS
+        // MANEJADORES DE EVENTOS
         // ═══════════════════════════════════════════════════════════════════
 
-        /// <summary>
-        /// Abre la ventana modal para agregar un nuevo producto
-        /// Principio de usabilidad: Control y libertad del usuario
-        /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var ventanaAgregar = new AgregarProductoWindow();
 
-                // ShowDialog bloquea la ventana principal hasta que se cierre la modal
                 if (ventanaAgregar.ShowDialog() == true)
                 {
                     Producto nuevoProducto = ventanaAgregar.Producto;
@@ -139,15 +120,10 @@ namespace GestorProductosWPF
             }
         }
 
-        /// <summary>
-        /// Elimina el producto seleccionado del inventario
-        /// Principio de usabilidad: Prevención de errores con confirmación
-        /// </summary>
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridProductos.SelectedItem is Producto productoSeleccionado)
             {
-                // Confirmación antes de eliminar - Prevención de errores
                 var resultado = MessageBox.Show(
                     $"¿Está seguro de eliminar el producto:\n\n{productoSeleccionado.Nombre}?",
                     "Confirmar Eliminación",
@@ -175,14 +151,6 @@ namespace GestorProductosWPF
             }
         }
 
-        // ═══════════════════════════════════════════════════════════════════
-        // MANEJADORES DE EVENTOS - BÚSQUEDA
-        // ═══════════════════════════════════════════════════════════════════
-
-        /// <summary>
-        /// Realiza la búsqueda de productos según el criterio seleccionado
-        /// Implementa algoritmos de búsqueda binaria y secuencial
-        /// </summary>
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -190,7 +158,6 @@ namespace GestorProductosWPF
                 string criterio = comboTipoBusqueda.SelectedItem.ToString();
                 string valor = txtValorBusqueda.Text.Trim();
 
-                // Validación de entrada - Prevención de errores
                 if (string.IsNullOrWhiteSpace(valor))
                 {
                     MostrarMensajeAdvertencia("Por favor, ingrese un valor de búsqueda");
@@ -204,7 +171,6 @@ namespace GestorProductosWPF
                     case "ID":
                         if (int.TryParse(valor, out int id))
                         {
-                            // Ordenar antes de búsqueda binaria
                             OrdenadorSimplificado.QuickSortPorId(productosParaBusqueda);
                             var (producto, iteraciones) = BuscadorSimplificado.BusquedaBinaria(productosParaBusqueda, id);
                             MostrarResultadoBusqueda(producto, iteraciones, "Búsqueda Binaria");
@@ -227,15 +193,10 @@ namespace GestorProductosWPF
             }
         }
 
-        /// <summary>
-        /// Muestra el resultado de la búsqueda en formato visualmente atractivo
-        /// Principio de usabilidad: Visibilidad del estado del sistema y feedback
-        /// </summary>
         private void MostrarResultadoBusqueda(Producto producto, int iteraciones, string tipoAlgoritmo)
         {
             if (producto != null)
             {
-                // Formato mejorado del resultado
                 txtResultadoBusqueda.Text =
                     $"✅ PRODUCTO ENCONTRADO\n" +
                     $"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n" +
@@ -261,7 +222,6 @@ namespace GestorProductosWPF
                     $"🔄 Iteraciones realizadas: {iteraciones}";
             }
 
-            // Actualizar barra de progreso con animación suave
             progressIteraciones.Value = iteraciones;
             txtIteracionesValor.Text = iteraciones.ToString();
         }
@@ -271,14 +231,6 @@ namespace GestorProductosWPF
             // Evento para futuras validaciones en tiempo real
         }
 
-        // ═══════════════════════════════════════════════════════════════════
-        // MANEJADORES DE EVENTOS - ORDENAMIENTO Y VISUALIZACIÓN
-        // ═══════════════════════════════════════════════════════════════════
-
-        /// <summary>
-        /// Ordena los productos según el criterio seleccionado
-        /// Implementa QuickSort y MergeSort según el tipo de dato
-        /// </summary>
         private void btnOrdenar_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -309,9 +261,7 @@ namespace GestorProductosWPF
         }
 
         /// <summary>
-        /// Dibuja un gráfico de barras interactivo con los precios de los productos
-        /// Principio de usabilidad: Reconocimiento antes que recordar (visualización de datos)
-        /// Ley de Fitts: Elementos visuales de tamaño adecuado
+        /// Dibuja gráfico de barras con espaciado mejorado y colores pastel
         /// </summary>
         private void DibujarGraficoBarras(List<Producto> productos)
         {
@@ -329,29 +279,33 @@ namespace GestorProductosWPF
                 double alturaCanvas = canvasGrafico.ActualHeight > 0 ? canvasGrafico.ActualHeight : 400;
                 double anchoCanvas = canvasGrafico.ActualWidth > 0 ? canvasGrafico.ActualWidth : 600;
 
-                // Calcular escala y espaciado
-                double escala = (alturaCanvas - 40) / maxPrecio;
-                double anchoBarra = Math.Min(30, anchoCanvas / (productos.Count * 1.5));
-                double espaciado = anchoBarra * 0.5;
+                // MEJORA: Espaciado aumentado entre barras
+                int productosAMostrar = Math.Min(productos.Count, 12);
+                double anchoTotal = anchoCanvas - 40; // Márgenes
+                double espacioTotal = anchoTotal / productosAMostrar;
+                double anchoBarra = espacioTotal * 0.6; // 60% del espacio para la barra
+                double espaciado = espacioTotal * 0.4; // 40% para el espaciado
 
-                for (int i = 0; i < productos.Count && i < 15; i++) // Limitar a 15 productos
+                double escala = (alturaCanvas - 60) / maxPrecio;
+
+                for (int i = 0; i < productosAMostrar; i++)
                 {
                     double alturaBarra = (double)productos[i].Precio * escala;
-                    double posicionX = i * (anchoBarra + espaciado) + espaciado;
+                    double posicionX = 20 + (i * espacioTotal);
 
-                    // Crear barra con gradiente
+                    // Crear barra con gradiente pastel
                     Rectangle barra = new Rectangle
                     {
                         Width = anchoBarra,
                         Height = alturaBarra,
                         Fill = new LinearGradientBrush(
-                            Color.FromRgb(79, 195, 247),  // #4FC3F7
-                            Color.FromRgb(3, 155, 229),   // #039BE5
+                            Color.FromRgb(100, 181, 246),  // #64B5F6
+                            Color.FromRgb(33, 150, 243),   // #2196F3
                             90),
-                        Stroke = new SolidColorBrush(Color.FromRgb(79, 195, 247)),
-                        StrokeThickness = 1,
-                        RadiusX = 4,
-                        RadiusY = 4
+                        Stroke = new SolidColorBrush(Color.FromRgb(33, 150, 243)),
+                        StrokeThickness = 2,
+                        RadiusX = 6,
+                        RadiusY = 6
                     };
 
                     Canvas.SetLeft(barra, posicionX);
@@ -362,32 +316,32 @@ namespace GestorProductosWPF
                     TextBlock etiquetaPrecio = new TextBlock
                     {
                         Text = $"{productos[i].Precio:C0}",
-                        FontSize = 10,
+                        FontSize = 11,
                         FontWeight = FontWeights.Bold,
-                        Foreground = new SolidColorBrush(Color.FromRgb(79, 195, 247)),
+                        Foreground = new SolidColorBrush(Color.FromRgb(33, 150, 243)),
                         Width = anchoBarra,
                         TextAlignment = TextAlignment.Center
                     };
 
                     Canvas.SetLeft(etiquetaPrecio, posicionX);
-                    Canvas.SetTop(etiquetaPrecio, alturaCanvas - alturaBarra - 18);
+                    Canvas.SetTop(etiquetaPrecio, alturaCanvas - alturaBarra - 20);
                     canvasGrafico.Children.Add(etiquetaPrecio);
 
-                    // Etiqueta de nombre (rotada si es necesario)
+                    // Etiqueta de nombre
                     TextBlock etiquetaNombre = new TextBlock
                     {
-                        Text = productos[i].Nombre.Length > 8
-                            ? productos[i].Nombre.Substring(0, 8) + "..."
+                        Text = productos[i].Nombre.Length > 10
+                            ? productos[i].Nombre.Substring(0, 10) + "..."
                             : productos[i].Nombre,
-                        FontSize = 9,
-                        Foreground = new SolidColorBrush(Color.FromRgb(176, 190, 197)),
-                        Width = anchoBarra,
+                        FontSize = 10,
+                        Foreground = new SolidColorBrush(Color.FromRgb(84, 110, 122)),
+                        Width = anchoBarra + 10,
                         TextAlignment = TextAlignment.Center,
                         TextWrapping = TextWrapping.Wrap
                     };
 
-                    Canvas.SetLeft(etiquetaNombre, posicionX);
-                    Canvas.SetTop(etiquetaNombre, alturaCanvas + 2);
+                    Canvas.SetLeft(etiquetaNombre, posicionX - 5);
+                    Canvas.SetTop(etiquetaNombre, alturaCanvas + 5);
                     canvasGrafico.Children.Add(etiquetaNombre);
                 }
             }
@@ -402,47 +356,50 @@ namespace GestorProductosWPF
             // Evento para futuras actualizaciones automáticas
         }
 
+        private void dataGridProductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Evento para futuras funcionalidades
+        }
+
+        /// <summary>
+        /// Botón para cerrar la aplicación
+        /// </summary>
+        private void btnCerrarApp_Click(object sender, RoutedEventArgs e)
+        {
+            var resultado = MessageBox.Show(
+                "¿Está seguro de salir de SorTech?",
+                "Confirmar Salida",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (resultado == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+        }
+
         // ═══════════════════════════════════════════════════════════════════
         // MÉTODOS AUXILIARES PARA MENSAJES
         // ═══════════════════════════════════════════════════════════════════
 
-        /// <summary>
-        /// Muestra un mensaje de éxito al usuario
-        /// Principio de usabilidad: Feedback inmediato
-        /// </summary>
         private void MostrarMensajeExito(string mensaje)
         {
             MessageBox.Show(mensaje, "✅ Éxito - SorTech", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        /// <summary>
-        /// Muestra un mensaje de error al usuario
-        /// Principio de usabilidad: Prevención y manejo de errores
-        /// </summary>
         private void MostrarMensajeError(string titulo, string mensaje)
         {
             MessageBox.Show(mensaje, $"❌ {titulo} - SorTech", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        /// <summary>
-        /// Muestra un mensaje de advertencia al usuario
-        /// </summary>
         private void MostrarMensajeAdvertencia(string mensaje)
         {
             MessageBox.Show(mensaje, "⚠️ Advertencia - SorTech", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        /// <summary>
-        /// Muestra un mensaje informativo al usuario
-        /// </summary>
         private void MostrarMensajeInformacion(string mensaje)
         {
             MessageBox.Show(mensaje, "ℹ️ Información - SorTech", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void dataGridProductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

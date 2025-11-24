@@ -3,25 +3,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="SorTech - Sistema de Gestión de Productos" 
         Height="900" Width="1400"
+        MinHeight="700" MinWidth="1200"
         WindowStartupLocation="CenterScreen"
-        Background="#0A1929"
-        ResizeMode="CanResizeWithGrip">
+        Background="#E8F4F8"
+        ResizeMode="CanResizeWithGrip"
+        WindowStyle="SingleBorderWindow">
 
     <Window.Resources>
+        <!-- PALETA DE COLORES PASTEL MEJORADA -->
+        <!-- Fondo Principal: #E8F4F8 (Azul Hielo Pastel) -->
+        <!-- Fondo Secundario: #D1E7F5 (Azul Cielo Pastel) -->
+        <!-- Fondo Controles: #FFFFFF (Blanco) -->
+        <!-- Acento Principal: #64B5F6 (Azul Pastel Brillante) -->
+        <!-- Acento Hover: #42A5F5 (Azul Medio) -->
+        <!-- Texto Principal: #2C3E50 (Gris Oscuro Suave) -->
+        <!-- Texto Secundario: #546E7A (Gris Azulado) -->
+
         <!-- Estilo para botones principales -->
         <Style x:Key="ModernButton" TargetType="Button">
-            <Setter Property="Background" Value="#4FC3F7"/>
+            <Setter Property="Background" Value="#64B5F6"/>
             <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="Padding" Value="25,12"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="8"
+                                CornerRadius="10"
                                 Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" 
                                             VerticalAlignment="Center"/>
@@ -31,22 +42,22 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#29B6F6"/>
+                    <Setter Property="Background" Value="#42A5F5"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#039BE5"/>
+                    <Setter Property="Background" Value="#2196F3"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <!-- Estilo para TextBox -->
         <Style x:Key="ModernTextBox" TargetType="TextBox">
-            <Setter Property="Background" Value="#1E3A5F"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="BorderBrush" Value="#4FC3F7"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderBrush" Value="#64B5F6"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -54,7 +65,7 @@
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6">
+                                CornerRadius="8">
                             <ScrollViewer x:Name="PART_ContentHost" 
                                         Margin="{TemplateBinding Padding}"/>
                         </Border>
@@ -65,48 +76,62 @@
 
         <!-- Estilo para ComboBox -->
         <Style x:Key="ModernComboBox" TargetType="ComboBox">
-            <Setter Property="Background" Value="#1E3A5F"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="BorderBrush" Value="#4FC3F7"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderBrush" Value="#64B5F6"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
 
         <!-- Estilo para Labels -->
         <Style x:Key="ModernLabel" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#B0BEC5"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Margin" Value="0,0,0,6"/>
+            <Setter Property="Foreground" Value="#546E7A"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
         </Style>
 
         <!-- Estilo para títulos de sección -->
         <Style x:Key="SectionTitle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#4FC3F7"/>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#2196F3"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Margin" Value="0,0,0,15"/>
         </Style>
 
-        <!-- Estilo para DataGrid -->
+        <!-- Estilo para DataGrid MEJORADO -->
         <Style x:Key="ModernDataGrid" TargetType="DataGrid">
-            <Setter Property="Background" Value="#1E3A5F"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="BorderBrush" Value="#4FC3F7"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderBrush" Value="#64B5F6"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="GridLinesVisibility" Value="None"/>
-            <Setter Property="RowBackground" Value="#1E3A5F"/>
-            <Setter Property="AlternatingRowBackground" Value="#243B55"/>
+            <Setter Property="RowBackground" Value="#FFFFFF"/>
+            <Setter Property="AlternatingRowBackground" Value="#F5F9FC"/>
             <Setter Property="HeadersVisibility" Value="Column"/>
             <Setter Property="AutoGenerateColumns" Value="True"/>
             <Setter Property="CanUserAddRows" Value="False"/>
             <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#A8D5F2"/>
+                        <Setter Property="Foreground" Value="#1565C0"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Padding" Value="12,10"/>
+                        <Setter Property="BorderBrush" Value="#64B5F6"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
 
-    <Grid Margin="20">
+    <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -114,34 +139,81 @@
 
         <!-- Header con logo y título -->
         <Border Grid.Row="0" 
-                Background="#1E3A5F" 
-                CornerRadius="12" 
+                Background="#FFFFFF" 
+                CornerRadius="15" 
                 Padding="25,20"
-                Margin="0,0,0,20">
+                Margin="0,0,0,15">
+            <Border.Effect>
+                <DropShadowEffect Color="#64B5F6" Opacity="0.3" BlurRadius="15" ShadowDepth="3"/>
+            </Border.Effect>
             <Grid>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <!-- Aquí iría el logo de SorTech -->
-                    <Border Width="60" Height="60" 
-                            Background="#4FC3F7" 
-                            CornerRadius="30"
+                    <!-- ============================================ -->
+                    <!-- LOGO: Reemplaza esta imagen con tu logo     -->
+                    <!-- Línea 148-156: Cambia Source="tu_logo.png"  -->
+                    <!-- Coloca tu archivo de logo en la carpeta      -->
+                    <!-- del proyecto y marca como "Resource"         -->
+                    <!-- ============================================ -->
+                    <Border Width="70" Height="70" 
+                            CornerRadius="35"
                             Margin="0,0,20,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#64B5F6" Offset="0"/>
+                                <GradientStop Color="#2196F3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        
                         <TextBlock Text="ST" 
-                                   FontSize="24" 
+                                   FontSize="28" 
                                    FontWeight="Bold" 
                                    Foreground="#FFFFFF"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"/>
                     </Border>
+
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock Text="SorTech" 
-                                   FontSize="28" 
+                                   FontSize="32" 
                                    FontWeight="Bold" 
-                                   Foreground="#FFFFFF"/>
+                                   Foreground="#2196F3"/>
                         <TextBlock Text="Sistema de Gestión de Productos Electrónicos" 
-                                   FontSize="14" 
-                                   Foreground="#B0BEC5"/>
+                                   FontSize="16" 
+                                   Foreground="#546E7A"/>
                     </StackPanel>
                 </StackPanel>
+
+                <!-- Botón de cerrar/salir opcional -->
+                <Button Content="✕" 
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Width="40" Height="40"
+                        Background="#FF8A80"
+                        Foreground="#FFFFFF"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Cursor="Hand"
+                        Click="btnCerrarApp_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                                    CornerRadius="20">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF8A80"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF5252"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
         </Border>
 
@@ -155,327 +227,358 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="TabItem">
                                 <Border Name="Border" 
-                                        Background="#1E3A5F" 
+                                        Background="#D1E7F5" 
                                         BorderThickness="0"
-                                        CornerRadius="8,8,0,0"
-                                        Padding="20,12"
-                                        Margin="0,0,5,0">
+                                        CornerRadius="10,10,0,0"
+                                        Padding="25,15"
+                                        Margin="0,0,8,0">
                                     <ContentPresenter ContentSource="Header" 
                                                     VerticalAlignment="Center"
                                                     HorizontalAlignment="Center"/>
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Border" Property="Background" Value="#4FC3F7"/>
+                                        <Setter TargetName="Border" Property="Background" Value="#64B5F6"/>
                                     </Trigger>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="Border" Property="Background" Value="#29B6F6"/>
+                                        <Setter TargetName="Border" Property="Background" Value="#42A5F5"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Foreground" Value="#FFFFFF"/>
-                    <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
                 </Style>
             </TabControl.Resources>
 
             <!-- Tab 1: Inventario -->
             <TabItem Header="📦 Inventario">
-                <Border Background="#1E3A5F" 
-                        CornerRadius="0,12,12,12" 
-                        Padding="25">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <Border Background="#FFFFFF" 
+                            CornerRadius="0,15,15,15" 
+                            Padding="25"
+                            Margin="0,0,0,10">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#64B5F6" Opacity="0.2" BlurRadius="10" ShadowDepth="2"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <!-- Barra de acciones -->
-                        <StackPanel Grid.Row="0" 
-                                    Orientation="Horizontal" 
-                                    Margin="0,0,0,20">
-                            <Button Content="➕ Agregar Producto" 
-                                    Style="{StaticResource ModernButton}"
-                                    Click="Button_Click"
-                                    Margin="0,0,15,0"/>
-                            <Button Content="🗑️ Eliminar Seleccionado" 
-                                    Style="{StaticResource ModernButton}"
-                                    Click="btnEliminar_Click"
-                                    Background="#E53935"/>
-                        </StackPanel>
+                            <!-- Barra de acciones -->
+                            <StackPanel Grid.Row="0" 
+                                        Orientation="Horizontal" 
+                                        Margin="0,0,0,20">
+                                <Button Content="➕ Agregar Producto" 
+                                        Style="{StaticResource ModernButton}"
+                                        Click="Button_Click"
+                                        Margin="0,0,15,0"/>
+                                <Button Content="🗑️ Eliminar Seleccionado" 
+                                        Style="{StaticResource ModernButton}"
+                                        Click="btnEliminar_Click"
+                                        Background="#FF8A80"/>
+                            </StackPanel>
 
-                        <!-- DataGrid de productos -->
-                        <DataGrid Grid.Row="1" 
-                                  x:Name="dataGridProductos"
-                                  Style="{StaticResource ModernDataGrid}"
-                                  Margin="0,0,0,15" SelectionChanged="dataGridProductos_SelectionChanged"/>
+                            <!-- DataGrid de productos -->
+                            <DataGrid Grid.Row="1" 
+                                      x:Name="dataGridProductos"
+                                      Style="{StaticResource ModernDataGrid}"
+                                      Margin="0,0,0,15" 
+                                      MinHeight="300"
+                                      MaxHeight="500"
+                                      SelectionChanged="dataGridProductos_SelectionChanged"/>
 
-                        <!-- Información del footer -->
-                        <Border Grid.Row="2" 
-                                Background="#0A1929" 
-                                CornerRadius="8" 
-                                Padding="15">
-                            <TextBlock x:Name="txtInfoInventario"
-                                       Foreground="#B0BEC5" 
-                                       FontSize="12"
-                                       Text="Total de productos en inventario: Cargando..."/>
-                        </Border>
-                    </Grid>
-                </Border>
+                            <!-- Información del footer -->
+                            <Border Grid.Row="2" 
+                                    Background="#E3F2FD" 
+                                    CornerRadius="10" 
+                                    Padding="15">
+                                <TextBlock x:Name="txtInfoInventario"
+                                           Foreground="#1565C0" 
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Text="Total de productos en inventario: Cargando..."/>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ScrollViewer>
             </TabItem>
 
             <!-- Tab 2: Búsqueda -->
             <TabItem Header="🔍 Búsqueda Avanzada">
-                <Border Background="#1E3A5F" 
-                        CornerRadius="0,12,12,12" 
-                        Padding="25">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <Border Background="#FFFFFF" 
+                            CornerRadius="0,15,15,15" 
+                            Padding="25"
+                            Margin="0,0,0,10">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#64B5F6" Opacity="0.2" BlurRadius="10" ShadowDepth="2"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                        <!-- Panel de búsqueda -->
-                        <Border Grid.Row="0" 
-                                Background="#0A1929" 
-                                CornerRadius="12" 
-                                Padding="25"
-                                Margin="0,0,0,20">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                            <!-- Panel de búsqueda -->
+                            <Border Grid.Row="0" 
+                                    Background="#E3F2FD" 
+                                    CornerRadius="12" 
+                                    Padding="25"
+                                    Margin="0,0,0,20">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" MinWidth="200"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0" Margin="0,0,20,0">
-                                    <TextBlock Text="Tipo de Búsqueda" 
-                                               Style="{StaticResource ModernLabel}"/>
-                                    <ComboBox x:Name="comboTipoBusqueda" 
-                                              Style="{StaticResource ModernComboBox}"/>
-                                </StackPanel>
+                                    <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                                        <TextBlock Text="Tipo de Búsqueda" 
+                                                   Style="{StaticResource ModernLabel}"/>
+                                        <ComboBox x:Name="comboTipoBusqueda" 
+                                                  Style="{StaticResource ModernComboBox}"
+                                                  MinWidth="180"/>
+                                    </StackPanel>
 
-                                <StackPanel Grid.Column="1" Margin="0,0,20,0">
-                                    <TextBlock Text="Valor a Buscar" 
-                                               Style="{StaticResource ModernLabel}"/>
-                                    <TextBox x:Name="txtValorBusqueda" 
-                                             Style="{StaticResource ModernTextBox}"
-                                             TextChanged="TextBox_TextChanged"/>
-                                </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="0,0,20,0">
+                                        <TextBlock Text="Valor a Buscar" 
+                                                   Style="{StaticResource ModernLabel}"/>
+                                        <TextBox x:Name="txtValorBusqueda" 
+                                                 Style="{StaticResource ModernTextBox}"
+                                                 TextChanged="TextBox_TextChanged"/>
+                                    </StackPanel>
 
-                                <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
-                                    <Button Content="🔎 Buscar" 
-                                            Style="{StaticResource ModernButton}"
-                                            Click="btnBuscar_Click"
-                                            Padding="30,10"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
+                                    <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
+                                        <Button Content="🔎 Buscar" 
+                                                Style="{StaticResource ModernButton}"
+                                                Click="btnBuscar_Click"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
 
-                        <!-- Resultado de búsqueda mejorado -->
-                        <Border Grid.Row="1" 
-                                Background="#0A1929" 
-                                CornerRadius="12" 
-                                Padding="25"
-                                Margin="0,0,0,20">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+                            <!-- Resultado de búsqueda mejorado -->
+                            <Border Grid.Row="1" 
+                                    Background="#E3F2FD" 
+                                    CornerRadius="12" 
+                                    Padding="25"
+                                    Margin="0,0,0,20">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" 
-                                           Text="📊 Resultado de Búsqueda" 
-                                           Style="{StaticResource SectionTitle}"/>
+                                    <TextBlock Grid.Row="0" 
+                                               Text="📊 Resultado de Búsqueda" 
+                                               Style="{StaticResource SectionTitle}"/>
 
-                                <!-- Panel de resultado visualmente atractivo -->
-                                <Border Grid.Row="1" 
-                                        Background="#1E3A5F" 
-                                        CornerRadius="8" 
-                                        Padding="20"
-                                        Margin="0,0,0,15">
-                                    <TextBlock x:Name="txtResultadoBusqueda" 
-                                               Foreground="#FFFFFF"
-                                               FontSize="14"
-                                               FontFamily="Consolas"
-                                               TextWrapping="Wrap"
-                                               Text="Realice una búsqueda para ver resultados..."/>
-                                </Border>
-
-                                <!-- Barra de progreso mejorada -->
-                                <StackPanel Grid.Row="2">
-                                    <Grid Margin="0,0,0,8">
-                                        <TextBlock Text="⚡ Iteraciones de Búsqueda" 
-                                                   Style="{StaticResource ModernLabel}"
-                                                   HorizontalAlignment="Left"/>
-                                        <TextBlock x:Name="txtIteracionesValor"
-                                                   Text="0"
-                                                   Foreground="#4FC3F7"
-                                                   FontSize="16"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Right"/>
-                                    </Grid>
-                                    <Border Background="#0A1929" 
+                                    <!-- Panel de resultado -->
+                                    <Border Grid.Row="1" 
+                                            Background="#FFFFFF" 
                                             CornerRadius="10" 
-                                            Height="30"
-                                            BorderBrush="#4FC3F7"
-                                            BorderThickness="2">
-                                        <ProgressBar x:Name="progressIteraciones" 
-                                                     Maximum="20"
-                                                     Height="26"
-                                                     Margin="2"
-                                                     Foreground="#4FC3F7"
-                                                     Background="Transparent"
-                                                     BorderThickness="0"/>
+                                            Padding="20"
+                                            Margin="0,0,0,15"
+                                            BorderBrush="#64B5F6"
+                                            BorderThickness="1">
+                                        <TextBlock x:Name="txtResultadoBusqueda" 
+                                                   Foreground="#2C3E50"
+                                                   FontSize="14"
+                                                   FontFamily="Consolas"
+                                                   TextWrapping="Wrap"
+                                                   Text="Realice una búsqueda para ver resultados..."/>
                                     </Border>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
 
-                        <!-- Información adicional -->
-                        <Border Grid.Row="2" 
-                                Background="#243B55" 
-                                CornerRadius="12" 
-                                Padding="20">
-                            <StackPanel>
-                                <TextBlock Text="💡 Información" 
-                                           Style="{StaticResource SectionTitle}"/>
-                                <TextBlock Foreground="#B0BEC5" 
-                                           TextWrapping="Wrap"
-                                           LineHeight="24">
-                                    <Run Text="• Búsqueda por ID: Utiliza algoritmo de búsqueda binaria (O(log n))"/>
-                                    <LineBreak/>
-                                    <Run Text="• Búsqueda por Nombre: Utiliza búsqueda secuencial (O(n))"/>
-                                    <LineBreak/>
-                                    <Run Text="• La barra de progreso muestra el número de iteraciones realizadas"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </Border>
-                    </Grid>
-                </Border>
+                                    <!-- Barra de progreso mejorada -->
+                                    <StackPanel Grid.Row="2">
+                                        <Grid Margin="0,0,0,10">
+                                            <TextBlock Text="⚡ Iteraciones de Búsqueda" 
+                                                       Style="{StaticResource ModernLabel}"
+                                                       HorizontalAlignment="Left"/>
+                                            <TextBlock x:Name="txtIteracionesValor"
+                                                       Text="0"
+                                                       Foreground="#2196F3"
+                                                       FontSize="18"
+                                                       FontWeight="Bold"
+                                                       HorizontalAlignment="Right"/>
+                                        </Grid>
+                                        <Border Background="#FFFFFF" 
+                                                CornerRadius="15" 
+                                                Height="35"
+                                                BorderBrush="#64B5F6"
+                                                BorderThickness="2">
+                                            <ProgressBar x:Name="progressIteraciones" 
+                                                         Maximum="20"
+                                                         Height="31"
+                                                         Margin="2"
+                                                         Foreground="#64B5F6"
+                                                         Background="Transparent"
+                                                         BorderThickness="0"/>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Información adicional -->
+                            <Border Grid.Row="2" 
+                                    Background="#FFF9C4" 
+                                    CornerRadius="12" 
+                                    Padding="20"
+                                    MinHeight="120">
+                                <StackPanel>
+                                    <TextBlock Text="💡 Información" 
+                                               Foreground="#F57C00"
+                                               FontSize="20"
+                                               FontWeight="Bold"
+                                               Margin="0,0,0,10"/>
+                                    <TextBlock Foreground="#6D4C41" 
+                                               TextWrapping="Wrap"
+                                               LineHeight="28"
+                                               FontSize="14">
+                                        <Run Text="• Búsqueda por ID: Utiliza algoritmo de búsqueda binaria (O(log n))"/>
+                                        <LineBreak/>
+                                        <Run Text="• Búsqueda por Nombre: Utiliza búsqueda secuencial (O(n))"/>
+                                        <LineBreak/>
+                                        <Run Text="• La barra de progreso muestra el número de iteraciones realizadas"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ScrollViewer>
             </TabItem>
 
             <!-- Tab 3: Ordenamiento y Análisis -->
             <TabItem Header="📈 Ordenamiento y Análisis">
-                <Border Background="#1E3A5F" 
-                        CornerRadius="0,12,12,12" 
-                        Padding="25">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <Border Background="#FFFFFF" 
+                            CornerRadius="0,15,15,15" 
+                            Padding="25"
+                            Margin="0,0,0,10">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#64B5F6" Opacity="0.2" BlurRadius="10" ShadowDepth="2"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                        <!-- Panel de ordenamiento -->
-                        <Border Grid.Row="0" 
-                                Background="#0A1929" 
-                                CornerRadius="12" 
-                                Padding="25"
-                                Margin="0,0,0,20">
-                            <Grid>
+                            <!-- Panel de ordenamiento -->
+                            <Border Grid.Row="0" 
+                                    Background="#E3F2FD" 
+                                    CornerRadius="12" 
+                                    Padding="25"
+                                    Margin="0,0,0,20">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" MinWidth="300"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                                        <TextBlock Text="Criterio de Ordenamiento" 
+                                                   Style="{StaticResource ModernLabel}"/>
+                                        <ComboBox x:Name="comboCriterioOrden" 
+                                                  Style="{StaticResource ModernComboBox}"
+                                                  SelectionChanged="comboCriterioOrden_SelectionChanged"
+                                                  MinWidth="280"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+                                        <Button Content="🔄 Ordenar" 
+                                                Style="{StaticResource ModernButton}"
+                                                Click="btnOrdenar_Click"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Contenido dividido: ListView y Gráfico -->
+                            <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="300"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*" MinWidth="300"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*" MinWidth="300"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="0" Margin="0,0,20,0">
-                                    <TextBlock Text="Criterio de Ordenamiento" 
-                                               Style="{StaticResource ModernLabel}"/>
-                                    <ComboBox x:Name="comboCriterioOrden" 
-                                              Style="{StaticResource ModernComboBox}"
-                                              SelectionChanged="comboCriterioOrden_SelectionChanged"/>
-                                </StackPanel>
+                                <!-- Lista ordenada -->
+                                <Border Grid.Column="0" 
+                                        Background="#E3F2FD" 
+                                        CornerRadius="12" 
+                                        Padding="20">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
 
-                                <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
-                                    <Button Content="🔄 Ordenar" 
-                                            Style="{StaticResource ModernButton}"
-                                            Click="btnOrdenar_Click"
-                                            Padding="30,10"/>
-                                </StackPanel>
+                                        <TextBlock Grid.Row="0" 
+                                                   Text="📋 Lista Ordenada" 
+                                                   Style="{StaticResource SectionTitle}"/>
+
+                                        <ListView Grid.Row="1" 
+                                                  x:Name="listViewOrdenados"
+                                                  Background="#FFFFFF"
+                                                  Foreground="#2C3E50"
+                                                  BorderBrush="#64B5F6"
+                                                  BorderThickness="2"
+                                                  FontFamily="Consolas"
+                                                  FontSize="13"
+                                                  MinHeight="300">
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Setter Property="Foreground" Value="#2C3E50"/>
+                                                    <Setter Property="Padding" Value="10"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#B3E5FC"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
+                                        </ListView>
+                                    </Grid>
+                                </Border>
+
+                                <!-- Gráfico de barras -->
+                                <Border Grid.Column="2" 
+                                        Background="#E3F2FD" 
+                                        CornerRadius="12" 
+                                        Padding="20">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" 
+                                                   Text="📊 Visualización de Precios" 
+                                                   Style="{StaticResource SectionTitle}"/>
+
+                                        <Border Grid.Row="1" 
+                                                Background="#FFFFFF" 
+                                                CornerRadius="10" 
+                                                BorderBrush="#64B5F6"
+                                                BorderThickness="2"
+                                                Padding="20"
+                                                MinHeight="300">
+                                            <Canvas x:Name="canvasGrafico" 
+                                                    Background="#FFFFFF"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
                             </Grid>
-                        </Border>
-
-                        <!-- Contenido dividido: ListView y Gráfico -->
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="15"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <!-- Lista ordenada -->
-                            <Border Grid.Column="0" 
-                                    Background="#0A1929" 
-                                    CornerRadius="12" 
-                                    Padding="20">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" 
-                                               Text="📋 Lista Ordenada" 
-                                               Style="{StaticResource SectionTitle}"/>
-
-                                    <ListView Grid.Row="1" 
-                                              x:Name="listViewOrdenados"
-                                              Background="#1E3A5F"
-                                              Foreground="#FFFFFF"
-                                              BorderBrush="#4FC3F7"
-                                              BorderThickness="2"
-                                              FontFamily="Consolas"
-                                              FontSize="12">
-                                        <ListView.ItemContainerStyle>
-                                            <Style TargetType="ListViewItem">
-                                                <Setter Property="Background" Value="Transparent"/>
-                                                <Setter Property="Foreground" Value="#FFFFFF"/>
-                                                <Setter Property="Padding" Value="10"/>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#29B6F6"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </ListView.ItemContainerStyle>
-                                    </ListView>
-                                </Grid>
-                            </Border>
-
-                            <!-- Gráfico de barras -->
-                            <Border Grid.Column="2" 
-                                    Background="#0A1929" 
-                                    CornerRadius="12" 
-                                    Padding="20">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" 
-                                               Text="📊 Visualización de Precios" 
-                                               Style="{StaticResource SectionTitle}"/>
-
-                                    <Border Grid.Row="1" 
-                                            Background="#1E3A5F" 
-                                            CornerRadius="8" 
-                                            BorderBrush="#4FC3F7"
-                                            BorderThickness="2"
-                                            Padding="15">
-                                        <Canvas x:Name="canvasGrafico" 
-                                                Background="#1E3A5F"/>
-                                    </Border>
-                                </Grid>
-                            </Border>
                         </Grid>
-                    </Grid>
-                </Border>
+                    </Border>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>

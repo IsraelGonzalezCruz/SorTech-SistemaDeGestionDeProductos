@@ -278,5 +278,15 @@ namespace GestorProductosWPF
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
+
+        private void txtCodigoBarras_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
